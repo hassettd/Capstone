@@ -56,11 +56,9 @@ function Account() {
     <div>
       <h2>Account Details</h2>
       <p>
-        <strong>First Name:</strong> {userData.firstname}
+        <strong>Username:</strong> {userData.username}
       </p>
-      <p>
-        <strong>Last Name:</strong> {userData.lastname}
-      </p>
+
       <p>
         <strong>Email:</strong> {userData.email}
       </p>

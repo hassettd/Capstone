@@ -14,13 +14,27 @@ const WatchList = () => {
     isLoading,
   } = useGetWatchesQuery({ limit, page });
 
+  // Assuming you get total count from your API response
+  const totalCount = 20; // You mentioned this is 20, adjust based on your API
+
   // Handle loading and error states
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading watches!</p>;
 
-  // Pagination navigation
-  const nextPage = () => setPage((prev) => prev + 1);
+  // Calculate total pages based on totalCount and limit
+  const totalPages = Math.ceil(totalCount / limit);
+
+  // Handle pagination logic
+  const nextPage = () => {
+    if (page < totalPages) {
+      setPage((prev) => prev + 1); // Only move to next page if it's not the last page
+    }
+  };
+
   const prevPage = () => setPage((prev) => (prev > 1 ? prev - 1 : 1));
+
+  // Disable next button if we're on the last page
+  const disableNext = page === totalPages;
 
   return (
     <div>
@@ -44,7 +58,9 @@ const WatchList = () => {
         <Button onClick={prevPage} disabled={page === 1}>
           Previous
         </Button>
-        <Button onClick={nextPage}>Next</Button>
+        <Button onClick={nextPage} disabled={disableNext}>
+          Next
+        </Button>
       </div>
     </div>
   );
