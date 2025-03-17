@@ -10,6 +10,7 @@ import LoginForm from "./components/LoginForm";
 import Register from "./components/Register";
 import Navigation from "./components/Navigation";
 import WatchList from "./components/WatchList";
+import SingleWatch from "./components/SingleWatch"; // Import the new SingleWatch component
 import AccountPage from "./components/AccountPage"; // Create this component
 import MyReviews from "./components/MyReviews"; // Create this component
 import MyComments from "./components/MyComments"; // Create this component
@@ -35,7 +36,9 @@ const App = () => (
         <Route path="/" element={<WatchList />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<Register />} />
-
+        {/* Watch details route */}
+        <Route path="/watches/:watchId" element={<SingleWatch />} />
+        {/* New route for Single Watch details */}
         {/* Protected routes */}
         <Route
           path="/account"
@@ -53,7 +56,6 @@ const App = () => (
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/comments/me"
           element={
@@ -62,7 +64,6 @@ const App = () => (
             </ProtectedRoute>
           }
         />
-
         {/* 404 route */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

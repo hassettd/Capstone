@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useGetWatchesQuery } from "../app/watchApi";
 import { Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 const WatchList = () => {
   const [limit, setLimit] = useState(10); // Default limit of 10 watches per page
@@ -15,7 +15,7 @@ const WatchList = () => {
   } = useGetWatchesQuery({ limit, page });
 
   // Assuming you get total count from your API response
-  const totalCount = 20; // You mentioned this is 20, adjust based on your API
+  const totalCount = 20; // Adjust this as needed based on your API response
 
   // Handle loading and error states
   if (isLoading) return <p>Loading...</p>;
@@ -45,7 +45,9 @@ const WatchList = () => {
               <Card.Body>
                 <Card.Title>{watch.name}</Card.Title>
                 <Link to={`/watches/${watch.id}`}>
-                  <Button>View Details</Button>
+                  {" "}
+                  {/* Correct link for details */}
+                  <Button variant="primary">View Details</Button>
                 </Link>
               </Card.Body>
             </Card>
