@@ -19,7 +19,7 @@ function Account() {
     }
 
     // Fetch user details from the API
-    fetch("https://fsa-watch-store-api.com/api/auth/me", {
+    fetch("https://capstone-backend2-ssa6.onrender.com/api/auth/me", {
       // Replace with the correct URL for your API
       method: "GET",
       headers: {

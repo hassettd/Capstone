@@ -1,12 +1,27 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { watchApi } from "./watchApi";
-import { authReducer } from "./authSlice";
+import authReducer from "./authSlice"; // Correct import for the default export of authSlice
 
 export const store = configureStore({
   reducer: {
-    [watchApi.reducerPath]: watchApi.reducer,
-    auth: authReducer,
+    [watchApi.reducerPath]: watchApi.reducer, // Add the watchApi reducer
+    auth: authReducer, // Add the authReducer to the store
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(watchApi.middleware),
+    getDefaultMiddleware().concat(watchApi.middleware), // Add middleware for RTK Query
 });
+
+export default store;
+
+// import { configureStore } from "@reduxjs/toolkit";
+// import { watchApi } from "./watchApi";
+// import { authReducer } from "./authSlice";
+
+// export const store = configureStore({
+//   reducer: {
+//     [watchApi.reducerPath]: watchApi.reducer,
+//     auth: authReducer,
+//   },
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware().concat(watchApi.middleware),
+// });
