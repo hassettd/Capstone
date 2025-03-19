@@ -48,6 +48,11 @@ export const watchApi = createApi({
       query: (watchId) => `/api/watches/${watchId}/reviews`, // Get reviews for a specific watch
     }),
 
+    // ** New Search Endpoint ** - Adding the search functionality
+    getSearchWatches: builder.query({
+      query: (searchQuery) => `/search-watches?query=${searchQuery}`, // Fixed issue: Use 'searchQuery' argument
+    }),
+
     // Reviews Endpoints
     getReview: builder.query({
       query: (reviewId) => `/api/watches/${reviewId}/reviews`, // Get details of a specific review
@@ -107,6 +112,7 @@ export const {
   useGetWatchesQuery, // Hook for fetching watches (with pagination support)
   useGetWatchDetailsQuery, // Hook for fetching details of a specific watch
   useGetWatchReviewsQuery, // Hook for fetching reviews for a specific watch
+  useGetSearchWatchesQuery, // ** Export the new search query hook **
   useCreateReviewMutation, // Hook for creating a review for a watch
   useCreateCommentMutation, // Hook for creating a comment on a review
   useUpdateReviewMutation, // Hook for updating a review
@@ -114,6 +120,129 @@ export const {
   useUpdateCommentMutation, // Hook for updating a comment
   useDeleteCommentMutation, // Hook for deleting a comment
 } = watchApi;
+// working api 3-19
+// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+// // Define the API slice
+// export const watchApi = createApi({
+//   reducerPath: "watchApi",
+//   baseQuery: fetchBaseQuery({
+//     baseUrl: "https://capstone-backend2-ssa6.onrender.com", // Base URL for your API
+//     prepareHeaders: (headers, { getState }) => {
+//       const token = getState().auth.token; // Get token from redux state
+//       console.log("Token from Redux state:", token); // Log the token to debug
+//       if (token) {
+//         headers.set("Authorization", `Bearer ${token}`); // Add token to headers if available
+//       }
+//       return headers;
+//     },
+//   }),
+//   endpoints: (builder) => ({
+//     // Authentication Endpoints
+//     register: builder.mutation({
+//       query: (user) => ({
+//         url: "/api/auth/register", // Endpoint for registration
+//         method: "POST",
+//         body: user, // Sending user data (e.g., email, password)
+//       }),
+//     }),
+//     login: builder.mutation({
+//       query: (credentials) => ({
+//         url: "/api/auth/login", // Endpoint for login
+//         method: "POST",
+//         body: credentials, // Sending login credentials (email, password)
+//       }),
+//     }),
+//     me: builder.query({
+//       query: () => "/api/auth/me", // Endpoint to get the current authenticated user's data
+//     }),
+
+//     // Watches Endpoints
+//     getWatches: builder.query({
+//       query: ({ limit = 10, page = 1 }) => {
+//         // Modified to accept dynamic `limit` and `page` values
+//         return `/api/watches?limit=${limit}&page=${page}`;
+//       },
+//     }),
+//     getWatchDetails: builder.query({
+//       query: (watchId) => `/api/watches/${watchId}`, // Get details of a specific watch
+//     }),
+//     getWatchReviews: builder.query({
+//       query: (watchId) => `/api/watches/${watchId}/reviews`, // Get reviews for a specific watch
+//     }),
+
+//     // ** New Search Endpoint ** - Adding the search functionality
+//     getSearchWatches: builder.query({
+//       query: (searchQuery) => `/search-watches?query=${searchQuery}`, // Fixed issue: Use 'searchQuery' argument
+//     }),
+
+//     // Reviews Endpoints
+//     getReview: builder.query({
+//       query: (reviewId) => `/api/watches/${reviewId}/reviews`, // Get details of a specific review
+//     }),
+//     createReview: builder.mutation({
+//       query: (data) => ({
+//         url: `/api/watches/${data.watchId}/reviews`, // Create a new review for a specific watch
+//         method: "POST",
+//         body: data.review, // Sending review data
+//       }),
+//     }),
+
+//     // Comments Endpoints
+//     createComment: builder.mutation({
+//       query: (data) => ({
+//         url: `/api/watches/${data.watchId}/reviews/${data.reviewId}/comments`, // Add a comment to a review
+//         method: "POST",
+//         body: data.comment, // Sending comment data
+//       }),
+//     }),
+
+//     // Update and Delete Review and Comment
+//     updateReview: builder.mutation({
+//       query: (data) => ({
+//         url: `/api/users/${data.userId}/reviews/${data.reviewId}`, // Update a specific review
+//         method: "PUT",
+//         body: data.review, // Sending updated review data
+//       }),
+//     }),
+//     deleteReview: builder.mutation({
+//       query: ({ userId, reviewId }) => ({
+//         url: `/api/users/${userId}/reviews/${reviewId}`, // Delete a specific review
+//         method: "DELETE",
+//       }),
+//     }),
+//     updateComment: builder.mutation({
+//       query: (data) => ({
+//         url: `/api/users/${data.userId}/comments/${data.commentId}`, // Update a specific comment
+//         method: "PUT",
+//         body: data.comment, // Sending updated comment data
+//       }),
+//     }),
+//     deleteComment: builder.mutation({
+//       query: ({ userId, commentId }) => ({
+//         url: `/api/users/${userId}/comments/${commentId}`, // Delete a specific comment
+//         method: "DELETE",
+//       }),
+//     }),
+//   }),
+// });
+
+// // Export the hooks generated by RTK Query
+// export const {
+//   useRegisterMutation, // Hook for registering a user
+//   useLoginMutation, // Hook for logging in a user
+//   useMeQuery, // Hook for fetching the current user
+//   useGetWatchesQuery, // Hook for fetching watches (with pagination support)
+//   useGetWatchDetailsQuery, // Hook for fetching details of a specific watch
+//   useGetWatchReviewsQuery, // Hook for fetching reviews for a specific watch
+//   useGetSearchWatchesQuery, // ** Export the new search query hook **
+//   useCreateReviewMutation, // Hook for creating a review for a watch
+//   useCreateCommentMutation, // Hook for creating a comment on a review
+//   useUpdateReviewMutation, // Hook for updating a review
+//   useDeleteReviewMutation, // Hook for deleting a review
+//   useUpdateCommentMutation, // Hook for updating a comment
+//   useDeleteCommentMutation, // Hook for deleting a comment
+// } = watchApi;
 // working api 3-17
 // import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 

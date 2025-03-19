@@ -15,6 +15,7 @@ import AccountPage from "./components/AccountPage"; // Create this component
 import MyReviews from "./components/MyReviews"; // Create this component
 import MyComments from "./components/MyComments"; // Create this component
 import { Container } from "react-bootstrap";
+import SearchResults from "./components/SearchResults"; // Import the new SearchResults component
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -36,9 +37,13 @@ const App = () => (
         <Route path="/" element={<WatchList />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<Register />} />
+
         {/* Watch details route */}
         <Route path="/watches/:watchId" element={<SingleWatch />} />
-        {/* New route for Single Watch details */}
+
+        {/* Route for Search Results */}
+        <Route path="/search-watches" element={<SearchResults />} />
+
         {/* Protected routes */}
         <Route
           path="/account"
@@ -64,6 +69,7 @@ const App = () => (
             </ProtectedRoute>
           }
         />
+
         {/* 404 route */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
