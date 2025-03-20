@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const watchApi = createApi({
   reducerPath: "watchApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://capstone-backend2-ssa6.onrender.com", // Base URL for your API
+    baseUrl: "https://capstone-backend2-2gcs.onrender.com", // Base URL for your API
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token; // Get token from redux state
       console.log("Token from Redux state:", token); // Log the token to debug
