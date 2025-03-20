@@ -19,7 +19,7 @@ function MyReviews() {
     }
 
     // Fetch user reviews from the API
-    fetch("https://fsa-watch-store-api.com/api/reviews/me", {
+    fetch("https://capstone-backend2-2gcs.onrender.com/api/reviews/me", {
       // Replace with the correct URL for your API
       method: "GET",
       headers: {

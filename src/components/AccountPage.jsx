@@ -19,7 +19,7 @@ function Account() {
     }
 
     // Fetch user details from the API
-    fetch("https://capstone-backend2-ssa6.onrender.com/api/auth/me", {
+    fetch("https://capstone-backend2-2gcs.onrender.com/api/auth/me", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

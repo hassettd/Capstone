@@ -19,7 +19,7 @@ function MyComments() {
     }
 
     // Fetch user comments from the API
-    fetch("https://fsa-watch-store-api.com/api/comments/me", {
+    fetch("https://capstone-backend2-2gcs.onrender.com/api/comments/me", {
       // Replace with the correct URL for your API
       method: "GET",
       headers: {
