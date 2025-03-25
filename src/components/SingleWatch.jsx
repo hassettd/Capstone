@@ -15,7 +15,7 @@ const SingleWatch = () => {
   const [averageScore, setAverageScore] = useState(null);
   const [reviewText, setReviewText] = useState("");
   const [score, setScore] = useState(1);
-  const [commentText, setCommentText] = useState(""); // New state for comments
+  const [commentTexts, setCommentTexts] = useState({}); // Manage comment text individually for each review
   const [error, setError] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token")); // Store the token in local storage
   const [imageError, setImageError] = useState(false); // State to handle image errors
@@ -85,6 +85,7 @@ const SingleWatch = () => {
 
   // Handle adding a comment
   const handleAddComment = (reviewId) => {
+    const commentText = commentTexts[reviewId]; // Get the specific comment text for this review
     if (!commentText.trim()) return; // Don't allow empty comments
 
     const commentData = {
@@ -101,7 +102,10 @@ const SingleWatch = () => {
     createComment({ ...commentData, headers }) // Trigger the create comment mutation with headers
       .then((response) => {
         console.log("Comment added:", response); // Log the response
-        setCommentText(""); // Clear the input field
+        setCommentTexts((prevCommentTexts) => ({
+          ...prevCommentTexts,
+          [reviewId]: "", // Clear the input field for this specific review
+        }));
 
         // Access the comment correctly from the response
         const newComment = response?.data?.comment; // Adjusted to access comment correctly
@@ -137,6 +141,14 @@ const SingleWatch = () => {
   const handleImageError = () => {
     console.log("Image failed to load, fallback to default image");
     setImageError(true); // Set image error state if the image fails to load
+  };
+
+  // Handle comment text change
+  const handleCommentTextChange = (reviewId, value) => {
+    setCommentTexts((prevCommentTexts) => ({
+      ...prevCommentTexts,
+      [reviewId]: value, // Update the comment text for the specific review
+    }));
   };
 
   if (watchLoading || reviewsLoading || userLoading)
@@ -228,8 +240,10 @@ const SingleWatch = () => {
                 <div>
                   <input
                     type="text"
-                    value={commentText}
-                    onChange={(e) => setCommentText(e.target.value)}
+                    value={commentTexts[review.id] || ""}
+                    onChange={(e) =>
+                      handleCommentTextChange(review.id, e.target.value)
+                    } // Manage comment input individually
                     placeholder="Add a comment..."
                   />
                   <button onClick={() => handleAddComment(review.id)}>
