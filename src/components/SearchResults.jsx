@@ -1,62 +1,105 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useGetWatchesQuery } from "../app/watchApi"; // Make sure this is the correct hook to fetch search results
+import React, { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom"; // To read query from URL and navigate
+import { useGetSearchWatchesQuery } from "../app/watchApi"; // Import the search hook
 import { Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 const SearchResults = () => {
-  // Get the query parameter from the URL using useLocation hook
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const query = queryParams.get("query");
+  const location = useLocation(); // To get the current URL
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const [searchQuery, setSearchQuery] = useState(query || "");
+  useEffect(() => {
+    // Parse query parameters from the URL
+    const queryParams = new URLSearchParams(location.search);
+    setSearchQuery(queryParams.get("query") || ""); // Set the search query from the URL or default to an empty string
+  }, [location]);
 
-  // Use the query to get watches using the correct API query
+  // Fetch search results based on the query
   const {
     data: watches,
     error,
     isLoading,
-  } = useGetWatchesQuery({
-    query: searchQuery, // Pass the search query to the API hook
-    limit: 20, // Example limit, adjust as needed
-    page: 1, // Example page, adjust if you have pagination
-  });
+  } = useGetSearchWatchesQuery(searchQuery);
 
-  // If the query is empty, show a message to prompt the user to search
-  if (!searchQuery) {
-    return (
-      <div className="alert alert-info">
-        Please enter a search query to see results.
-      </div>
-    );
-  }
+  // Handle loading and error states
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading watches!</p>;
 
-  // Handle loading, error, and rendering results
-  if (isLoading) return <p>Loading search results...</p>;
-  if (error) return <p>Error loading search results. Please try again.</p>;
-
-  // If no watches are found
+  // If no watches are found, display a message
   if (watches && watches.length === 0) {
-    return <p>No watches found for your search query: "{searchQuery}"</p>;
+    return <p>No watches found matching your search.</p>;
   }
 
   return (
-    <div className="row">
-      {watches.map((watch) => (
-        <div key={watch.id} className="col-12 col-md-4 mb-4">
-          <Card>
-            <Card.Body>
-              <Card.Title>{watch.name}</Card.Title>
-              <Link to={`/watches/${watch.id}`}>
-                <Button variant="primary">View Details</Button>
-              </Link>
-            </Card.Body>
-          </Card>
-        </div>
-      ))}
+    <div>
+      <h2>Search Results</h2>
+      <div className="row">
+        {watches.map((watch) => (
+          <div key={watch.id} className="col-12 col-md-4 mb-4">
+            <Card>
+              <Card.Body>
+                <Card.Title>{watch.name}</Card.Title>
+                <Link to={`/watches/${watch.id}`}>
+                  <Button variant="primary">View Details</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 export default SearchResults;
+// 3-25 start point
+// import React, { useState, useEffect } from "react";
+// import { useLocation } from "react-router-dom"; // To read query from URL
+// import { useGetSearchWatchesQuery } from "../app/watchApi"; // Import the search hook
+// import { Card, Button } from "react-bootstrap";
+
+// const SearchResults = () => {
+//   const location = useLocation();
+//   const [searchQuery, setSearchQuery] = useState("");
+
+//   useEffect(() => {
+//     const queryParams = new URLSearchParams(location.search);
+//     setSearchQuery(queryParams.get("query") || ""); // Set search query from URL
+//   }, [location]);
+
+//   // Fetch search results using the search query
+//   const {
+//     data: watches,
+//     error,
+//     isLoading,
+//   } = useGetSearchWatchesQuery(searchQuery);
+
+//   // Handle loading and error states
+//   if (isLoading) return <p>Loading...</p>;
+//   if (error) return <p>Error loading watches!</p>;
+
+//   // If no watches are found, show a message
+//   if (watches && watches.length === 0) {
+//     return <p>No watches found matching your search.</p>;
+//   }
+
+//   return (
+//     <div>
+//       <div className="row">
+//         {watches.map((watch) => (
+//           <div key={watch.id} className="col-12 col-md-4 mb-4">
+//             <Card>
+//               <Card.Body>
+//                 <Card.Title>{watch.name}</Card.Title>
+//                 <Link to={`/watches/${watch.id}`}>
+//                   <Button variant="primary">View Details</Button>
+//                 </Link>
+//               </Card.Body>
+//             </Card>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SearchResults;
