@@ -6,6 +6,7 @@ import "./index.css";
 import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./app.css"; // Custom styles after Bootstrap import
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 

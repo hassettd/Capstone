@@ -40,7 +40,16 @@ const SearchResults = () => {
               <Card.Body>
                 <Card.Title>{watch.name}</Card.Title>
                 <Link to={`/watches/${watch.id}`}>
-                  <Button variant="primary">View Details</Button>
+                  <Button
+                    className="btn"
+                    style={{
+                      backgroundColor: "#800020",
+                      color: "white", // text color
+                      border: "none", // Remove the default border if you like
+                    }}
+                  >
+                    View Details
+                  </Button>
                 </Link>
               </Card.Body>
             </Card>

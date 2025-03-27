@@ -257,7 +257,7 @@ const SingleWatch = () => {
 };
 
 export default SingleWatch;
-// 3-27 start (working)
+// working version but no average score
 // import React, { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 // import {
