@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://capstone-backend2-ssa6.onrender.com", // Replace with your backend URL
+        target: "https://capstone-backend2-2gcs.onrender.com", // Replace with your backend URL
         changeOrigin: true,
         secure: false, // Set this to true if the target API uses HTTPS
       },
