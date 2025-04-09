@@ -131,8 +131,7 @@ const SingleWatch = () => {
 
   if (watchLoading || reviewsLoading || userLoading)
     return <div>Loading...</div>;
-  if (watchError || reviewsError || userError)
-    return <div>Error loading data</div>;
+  if (watchError || userError) return <div>Error loading data</div>;
 
   return (
     <div className="single-watch">
