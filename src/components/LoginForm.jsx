@@ -17,7 +17,7 @@ const LoginForm = () => {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(loginSuccess(res)); // Store user info & token
-      navigate("./WatchList");
+      navigate("/");
       window.location.reload(); // Force full page reload after navigation
     } catch (err) {
       console.error(err);
