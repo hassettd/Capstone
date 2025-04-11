@@ -18,6 +18,7 @@ const LoginForm = () => {
       const res = await login({ email, password }).unwrap();
       dispatch(loginSuccess(res)); // Store user info & token
       navigate("/dashboard");
+      window.location.reload(); // Force full page reload after navigation
     } catch (err) {
       console.error(err);
     }
