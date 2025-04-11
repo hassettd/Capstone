@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { watchApi } from "./watchApi";
-import authReducer from "./authSlice"; // Correct import for the default export of authSlice
+import authReducer from "./authSlice"; 
 
 export const store = configureStore({
   reducer: {
@@ -13,15 +13,3 @@ export const store = configureStore({
 
 export default store;
 
-// import { configureStore } from "@reduxjs/toolkit";
-// import { watchApi } from "./watchApi";
-// import { authReducer } from "./authSlice";
-
-// export const store = configureStore({
-//   reducer: {
-//     [watchApi.reducerPath]: watchApi.reducer,
-//     auth: authReducer,
-//   },
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware().concat(watchApi.middleware),
-// });
