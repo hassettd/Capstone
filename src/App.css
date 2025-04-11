@@ -33,10 +33,6 @@
   }
 }
 
-/* .card {
-  padding: 2em;
-} */
-
 .read-the-docs {
   color: #888;
 }
@@ -71,68 +67,3 @@
 .pagination .page-item .page-link:hover {
   background-color: #660016; /* Darker burgundy for hover effect */
 }
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-/* Custom pagination styles */
-/* .pagination .page-item .page-link {
-  background-color: #800020; /* Burgundy background */
-  /* color: white; /* White text */
-  /*border: none; Remove default border
-/* } */
-
-/*./*pagination .page-item .page-link:hover {
-  background-color: #660016; /* Darker burgundy for hover */
-  /* color: white; /* Maintain white text on hover */
-/*}
-
-/* .pagination .page-item.active .page-link {
-  background-color: #800020; /* Burgundy background for active page */
-  /* color: white; /* White text for active page */
-  /* border: none; /* Remove border */
-/*}
-
-.pagination .page-item.disabled .page-link {
-  background-color: #f0f0f0; /* Light gray background for disabled page */
-  /*color: #ccc; /* Light gray text for disabled page */
-  /*border: none; /* Remove border */
-/*
