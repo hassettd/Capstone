@@ -43,7 +43,14 @@ const SingleWatch = () => {
     data: userData,
     error: userError,
     isLoading: userLoading,
-  } = useMeQuery();
+  } = useMeQuery(undefined, {
+    skip: !token, // ✅ Only run the /me query if a token exists
+  });
+  // const {
+  //   data: userData,
+  //   error: userError,
+  //   isLoading: userLoading,
+  // } = useMeQuery();
 
   useEffect(() => {
     if (watchDetails) setWatch(watchDetails);
