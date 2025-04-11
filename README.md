@@ -14,7 +14,7 @@ If you are developing a production application, we recommend using TypeScript an
 # Watch Review Site
 
 This is a capstone project for the web developer course at Full Stack Academy. It utilizes seperate frontend and backend git files stored at GitHub to deliver the app to online users.
-The PostgreSQL database and backend are mounted remotely on Render.com and the frontend is live on Netlify.com. The app utilizes SQl and Prisma on the backend, and React, Node.js, and the Bootstrap CSS style manager on the frontend.
+The PostgreSQL database and backend are mounted remotely on Render.com and the frontend is live on Netlify.com. The app utilizes SQl and Prisma on the backend, and React, Node.js, and the Bootstrap CSS style manager on the frontend. bcrypt and JWT are used to implement authentication. Redux Toolkit and RTK Query are effectively used to handle global state and communication with the API.
 
 The theme and purpose is a model watch review site. Upon loading the URL, all users are presented with a variety of fine watches, can can use pagination to navigate the selection. Search functionality is also available to search for specific brands and models.
 Clicking a "View Details" button brings up a detailed page of the selected watch, including photos, features, and average user rating.
